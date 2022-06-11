@@ -65,7 +65,7 @@ const SearchBooksResults=({results})=>{
                                         backgroundImage:`url(${book.imageLinks.smallThumbnail}`,
                                         }}
                                     ></div>
-                                    <BookShelfChanger/>
+                                    <BookShelfChanger book={book}/>
                                     </div>
                                 </div>
                                 <div className="book-title">{book.title}</div>
