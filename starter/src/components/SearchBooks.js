@@ -1,8 +1,38 @@
+import { useState } from "react";
+import * as BooksAPI from '../BooksAPI'
+import SearchBooksResults from "./SearchBooksResults";
 
+const SearchBooks=({setShowSearchpage,showSearchPage,books})=>{
 
-const SearchBooks=({setShowSearchpage,showSearchPage})=>{
+    const [query, setQuery] = useState("");
 
-    return(
+    const [results,setResults]=useState([])
+
+    const updateQuery =async (query) => {
+
+        setQuery(query.trim());
+
+        if (query){
+            const res=await BooksAPI.search(query,5);
+
+            if (res)
+            {
+                setResults(res)
+            }
+            else
+            {
+                setResults([])
+            } 
+
+        }
+        else
+        {
+            setResults([])
+        }
+        
+      };    
+
+    return(        
         <div className="search-books">
         <div className="search-books-bar">
           <a
@@ -15,12 +45,12 @@ const SearchBooks=({setShowSearchpage,showSearchPage})=>{
             <input
               type="text"
               placeholder="Search by title, author, or ISBN"
+              value={query}
+              onChange={(event) => updateQuery(event.target.value)}
             />
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid"></ol>
-        </div>
+        {results.length&&(<SearchBooksResults results={results}/>)}
       </div>
 
     )    

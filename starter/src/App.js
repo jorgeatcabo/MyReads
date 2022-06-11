@@ -20,7 +20,8 @@ function App() {
   return (
     <div className="app">
       {showSearchPage ? (
-        <SearchBooks setShowSearchpage={setShowSearchpage} showSearchPage={showSearchPage}/>) : (
+        <SearchBooks setShowSearchpage={setShowSearchpage} 
+        showSearchPage={showSearchPage} books={books}/>) : (
         <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
