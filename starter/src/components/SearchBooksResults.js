@@ -1,4 +1,4 @@
-import "../App.css";
+import BookShelfChanger from "./BookShelfChanger";
 
 /*
 {
@@ -48,38 +48,34 @@ const SearchBooksResults=({results})=>{
 
     return(
         <div className="search-books-results">
-                      <div className="list-books-content">
-            <div>
-
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Results</h2>
-                <div className="bookshelf-books">
-
-            {results.map((book)=>(
-                <ol className="books-grid">
-                    <li key={book.id}>
-                    <div className="book">
-                        <div className="book-top">
-                        <div
-                            className="book-cover"
-                            style={{
-                            width: 128,
-                            height: 193,
-                            backgroundImage:`url(${book.imageLinks.smallThumbnail}`,
-                            }}
-                        ></div>
-                        </div>
-                        <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors}</div>
-                    </div>
-                    </li>
-                </ol>              
-            ))}
-                            </div>    
+            <div className="list-books-content">
+                <div className="bookshelf">
+                    <h2 className="bookshelf-title">Results</h2>
+                    <div className="bookshelf-books">
+                        <ol className="books-grid">
+                        {results.map((book)=>(                        
+                            <li key={book.id}>
+                                <div className="book">
+                                    <div className="book-top">
+                                        <div
+                                        className="book-cover"
+                                        style={{
+                                        width: 128,
+                                        height: 193,
+                                        backgroundImage:`url(${book.imageLinks.smallThumbnail}`,
+                                        }}
+                                    ></div>
+                                    <BookShelfChanger/>
+                                    </div>
+                                </div>
+                                <div className="book-title">{book.title}</div>
+                                <div className="book-authors">{book.authors}</div>
+                            </li>                
+                        ))}
+                        </ol>              
+                    </div>    
                 </div>    
-                </div>    
-                </div>    
-
+            </div>    
         </div>    
     )
 }
