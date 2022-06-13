@@ -1,13 +1,13 @@
 import BookShelfChanger from "./BookShelfChanger";
 
-const CurrentlyReading=({userCurrentlyReading})=>{
+const Shelf=({kind,title})=>{
 
     return(
         <div className="bookshelf">
-        <h2 className="bookshelf-title">Currently Reading</h2>
+        <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {userCurrentlyReading.map((book)=>(   
+                    {kind.map((book)=>(   
                         <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">
@@ -34,4 +34,4 @@ const CurrentlyReading=({userCurrentlyReading})=>{
 
 }
 
-export default CurrentlyReading;
+export default Shelf;
