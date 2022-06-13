@@ -45,7 +45,7 @@ import BookShelfChanger from "./BookShelfChanger";
 }
 */
 const SearchBooksResults=({results})=>{
-
+    
     return(
         <div className="search-books-results">
             <div className="list-books-content">
@@ -53,7 +53,7 @@ const SearchBooksResults=({results})=>{
                     <h2 className="bookshelf-title">Results</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                        {results.map((book)=>(                        
+                        {results.map((book)=>(   
                             <li key={book.id}>
                                 <div className="book">
                                     <div className="book-top">

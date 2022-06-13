@@ -14,6 +14,11 @@ const SearchBooks=({setShowSearchpage,showSearchPage,books})=>{
 
         if (query){
             const res=await BooksAPI.search(query,5);
+            // const clean=res.map((book)=>{
+            //     if (!book.imageLinks.smallThumbnail){
+            //         console.log("empty")
+            //     }
+            // });   
 
             if (res)
             {
@@ -30,8 +35,8 @@ const SearchBooks=({setShowSearchpage,showSearchPage,books})=>{
             setResults([])
         }
         
-      };    
-
+      };
+          
     return(        
         <div className="search-books">
         <div className="search-books-bar">
@@ -49,8 +54,8 @@ const SearchBooks=({setShowSearchpage,showSearchPage,books})=>{
               onChange={(event) => updateQuery(event.target.value)}
             />
           </div>
-        </div>
-        {results.length&&(<SearchBooksResults results={results}/>)}
+        </div>        
+        {results.length>0&&(<SearchBooksResults results={results}/>)}
       </div>
 
     )    

@@ -1,20 +1,38 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import * as BooksAPI from '../BooksAPI'
 
 const BookShelfChanger=({book})=>{
 
     const [shelf, setShelf]=useState("")
+    const [currentShelf, setCurrentShelf]=useState("")
 
-    const updateShelf= async(shelfSelected)=>{
-        setShelf(shelfSelected)
-        const res=await BooksAPI.update(book,shelf);
-        console.log(res)
-    }
+    const onUpdateShelf= async(event)=>{
+        const { value } = event.target;
+        setShelf(value)
+    }    
 
+    useEffect(() => {
+       
+        const updateShelf= async(value)=>{
+            await BooksAPI.update(book,shelf);
+            const bookDetails=await BooksAPI.get(book.id);
+            setCurrentShelf(bookDetails.shelf)
+        }     
+        
+        if (shelf) updateShelf(shelf)
+
+        const getBook=async()=>{
+            const bookDetails=await BooksAPI.get(book.id);
+            setCurrentShelf(bookDetails.shelf)
+        }
+        
+        if (!shelf) getBook()    
+
+      }, [shelf,book]);
     return(
         
         <div className="book-shelf-changer">
-            <select value={shelf} onChange={(event) => updateShelf(event.target.value)}>
+            <select onChange={onUpdateShelf} value={currentShelf}>
                 <option value="none" disabled>
                     Move to...
                 </option>
