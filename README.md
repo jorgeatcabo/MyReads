@@ -1,27 +1,69 @@
-# MyReads Project
+# MyReads: A Book Tracking App
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+## Description
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to bootstrap the project.
+This app allows you to select and categorize books you have read, are currently reading, or want to read. This app uses React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
 
-## TL;DR
+## Table of Contents
+  - [Description](#description "Description")
+  - [Installation](#installation "Installation")
+  - [Features](#features "Features")
+  - [What You are Getting](#what-you-are-getting "What You are Getting")
+  - [Backend Server](#backend-server "Backend Server")  
+  - [Create React App](#create-react-app "Create React App")    
 
-To get started developing right away:
+ 
+
+## Installation
 
 - install all project dependencies with `npm install`
 - start the development server with `npm start`
 
-## What You're Getting
+## Features
+
+In this application, the main page displays a list of "shelves" (i.e. categories), each of which contains a number of books. The three shelves are:
+
+- Currently Reading
+- Want to Read
+- Read
+
+![Main Page](/assets/main-page-1.png)
+
+Each book has a control that lets you select the shelf for that book. When you select a different shelf, the book moves there. The default value for the control is the current shelf the book is in.
+
+![Main Page](/assets/main-page-2.png)
+
+The main page also has a link to /search, a search page that allows you to find books to add to your library.
+
+The search page has a text input that may be used to find books. As the value of the text input changes, the books that match that query are displayed on the page, along with a control that lets you add the book to your library.
+
+![Search Page](/assets/search-page.png)
+
+When a book is on a bookshelf, it has the same shelf on both the main application page and the search page.
+
+The search page also has a link to / (the root URL), which leads back to the main page.
+
+When you navigate back to the main page from the search page, you instantly see all of the selections you made on the search page in your library.
+
+## What You Are Getting
 
 ```bash
 ├── CONTRIBUTING.md
 ├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
+with your app.
 ├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
 ├── public
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
+    ├──components
+       ├──BookShelf.js # Reusable component for showing different kind of book shelves.
+       ├──BookShelfChanger.js # Reusable component for manage the book shelf selected.
+       ├──MainPage.js # Component used for the root of the app and for / route.
+       ├──SearchBook.js # Component for searching books and for /search route.                     
+       ├──SearchBookResults.js # Component for showing the results from the SearchBook component. 
+    ├──helpers       
+       ├──addSmallThumbnail.js # Helper function for managing books without smallThumbnail property.    
     ├── App.css # Styles for your app. Feel free to customize this as you desire.
     ├── App.js # This is the root of your app. Contains static HTML right now.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
@@ -34,11 +76,9 @@ To get started developing right away:
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
-
 ## Backend Server
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+This app provides a backend server. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
 - [`getAll`](#getall)
 - [`update`](#update)
@@ -77,18 +117,7 @@ search(query);
 
 - query: `<String>`
 - Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-- These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
-
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
 ## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebook/create-react-app/blob/main/packages/cra-template/template/README.md).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
