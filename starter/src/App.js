@@ -9,22 +9,30 @@ function App() {
   const [userCurrentlyReading, setUserCurrentlyReading] = useState([]);
   const [userWantToRead, setUserWantToRead] = useState([]);
   const [userRead, setUserRead] = useState([]);
+  const [updateShelves, setUpdateShelves] = useState("");
+
+  const updateShelf=(value)=>{
+    setUpdateShelves(value)
+  }
 
   useEffect(() => {
     const getUserBooks = async () => {
     const res = await BooksAPI.getAll();
+
     const currentlyReading=res.filter((book)=>book.shelf==="currentlyReading")
     setUserCurrentlyReading(currentlyReading)
+
     const wantToRead=res.filter((book)=>book.shelf==="wantToRead")
     setUserWantToRead(wantToRead)
-    const Read=res.filter((book)=>book.shelf==="read")
-    setUserRead(Read)
+
+    const read=res.filter((book)=>book.shelf==="read")
+    setUserRead(read)
     
   };
 
     getUserBooks();
     
-  }, []);
+  }, [updateShelves]);
 
   return (
     <div className="app">
@@ -37,9 +45,9 @@ function App() {
           </div>
           <div className="list-books-content">
             <div>
-              <Shelf kind={userCurrentlyReading} title="Currently Reading"/>
-              <Shelf kind={userWantToRead} title="Want to Read"/>
-              <Shelf kind={userRead} title="Read"/>
+              <Shelf kind={userCurrentlyReading} title="Currently Reading" onUpdateShelf={updateShelf}/>
+              <Shelf kind={userWantToRead} title="Want to Read" onUpdateShelf={updateShelf}/>
+              <Shelf kind={userRead} title="Read" onUpdateShelf={updateShelf}/>
             </div>
           </div>
           <div className="open-search">
