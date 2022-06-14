@@ -44,6 +44,46 @@ import BookShelfChanger from "./BookShelfChanger";
     "id": "qpdRgb9X3EcC"
 }
 */
+
+/* No tiene imagen
+
+      {
+          "title": "Literary Fiction Collection",
+          "publishedDate": "2016",
+          "industryIdentifiers": [
+              {
+                  "type": "ISBN_10",
+                  "identifier": "1509414568"
+              },
+              {
+                  "type": "ISBN_13",
+                  "identifier": "9781509414567"
+              }
+          ],
+          "readingModes": {
+              "text": false,
+              "image": false
+          },
+          "printType": "BOOK",
+          "categories": [
+              "Electronic book readers"
+          ],
+          "maturityRating": "NOT_MATURE",
+          "allowAnonLogging": false,
+          "contentVersion": "preview-1.0.0",
+          "panelizationSummary": {
+              "containsEpubBubbles": false,
+              "containsImageBubbles": false
+          },
+          "language": "en",
+          "previewLink": "http://books.google.com/books?id=3cVKAQAACAAJ&dq=literary+fiction&hl=&cd=10&source=gbs_api",
+          "infoLink": "http://books.google.com/books?id=3cVKAQAACAAJ&dq=literary+fiction&hl=&source=gbs_api",
+          "canonicalVolumeLink": "https://books.google.com/books/about/Literary_Fiction_Collection.html?hl=&id=3cVKAQAACAAJ",
+          "id": "3cVKAQAACAAJ"
+      },
+
+
+*/
 const SearchBooksResults=({results,onUpdateShelf})=>{
     
     return(
@@ -62,7 +102,7 @@ const SearchBooksResults=({results,onUpdateShelf})=>{
                                         style={{
                                         width: 128,
                                         height: 193,
-                                        backgroundImage:`url(${book.imageLinks.smallThumbnail}`,
+                                        backgroundImage:`url(${book.imageLinks.smallThumbnail})`,
                                         }}
                                     ></div>
                                     <BookShelfChanger book={book} onUpdateShelf={onUpdateShelf}/>
