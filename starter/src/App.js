@@ -1,16 +1,18 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as BooksAPI from './BooksAPI'
+import MainPage from "./components/MainPage";
 import SearchBooks from "./components/SearchBooks";
-import BookShelf from "./components/BookShelf";
 
 function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
+
+  const [updateShelves, setUpdateShelves] = useState("");
   const [userCurrentlyReading, setUserCurrentlyReading] = useState([]);
   const [userWantToRead, setUserWantToRead] = useState([]);
   const [userRead, setUserRead] = useState([]);
-  const [updateShelves, setUpdateShelves] = useState("");
 
+  
   const updateShelf=(value)=>{
     setUpdateShelves(value)
   }
@@ -34,29 +36,19 @@ function App() {
     
   }, [updateShelves]);
 
+
   return (
-    <div className="app">
-      {showSearchPage ? (
-        <SearchBooks setShowSearchpage={setShowSearchpage} 
-        showSearchPage={showSearchPage} onUpdateShelf={updateShelf}/>) : (
-        <div className="list-books">
-          <div className="list-books-title">
-            <h1>MyReads</h1>
-          </div>
-          <div className="list-books-content">
-            <div>
-              <BookShelf kind={userCurrentlyReading} title="Currently Reading" onUpdateShelf={updateShelf}/>
-              <BookShelf kind={userWantToRead} title="Want to Read" onUpdateShelf={updateShelf}/>
-              <BookShelf kind={userRead} title="Read" onUpdateShelf={updateShelf}/>
-            </div>
-          </div>
-          <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+
+    <Routes>
+
+      <Route exact path="/" element={<MainPage userCurrentlyReading={userCurrentlyReading}
+      userWantToRead={userWantToRead} userRead={userRead} updateShelf={updateShelf}/>}/>
+
+      <Route path="/search" element={<SearchBooks onUpdateShelf={updateShelf}/>}/>
+
+    </Routes>
+
+);
+};
 
 export default App;

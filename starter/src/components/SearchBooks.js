@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import * as BooksAPI from '../BooksAPI'
 import SearchBooksResults from "./SearchBooksResults";
 
@@ -40,12 +41,9 @@ const SearchBooks=({setShowSearchpage,showSearchPage, onUpdateShelf})=>{
     return(        
         <div className="search-books">
         <div className="search-books-bar">
-          <a
-            className="close-search"
-            onClick={() => setShowSearchpage(!showSearchPage)}
-          >
+          <Link className="close-search" to={{pathname: "/",}}>
             Close
-          </a>
+          </Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"
