@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from "./components/SearchBooks";
-import Shelf from "./components/Shelf";
+import BookShelf from "./components/BookShelf";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
@@ -38,16 +38,16 @@ function App() {
     <div className="app">
       {showSearchPage ? (
         <SearchBooks setShowSearchpage={setShowSearchpage} 
-        showSearchPage={showSearchPage}/>) : (
+        showSearchPage={showSearchPage} onUpdateShelf={updateShelf}/>) : (
         <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
             <div>
-              <Shelf kind={userCurrentlyReading} title="Currently Reading" onUpdateShelf={updateShelf}/>
-              <Shelf kind={userWantToRead} title="Want to Read" onUpdateShelf={updateShelf}/>
-              <Shelf kind={userRead} title="Read" onUpdateShelf={updateShelf}/>
+              <BookShelf kind={userCurrentlyReading} title="Currently Reading" onUpdateShelf={updateShelf}/>
+              <BookShelf kind={userWantToRead} title="Want to Read" onUpdateShelf={updateShelf}/>
+              <BookShelf kind={userRead} title="Read" onUpdateShelf={updateShelf}/>
             </div>
           </div>
           <div className="open-search">

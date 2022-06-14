@@ -44,7 +44,7 @@ import BookShelfChanger from "./BookShelfChanger";
     "id": "qpdRgb9X3EcC"
 }
 */
-const SearchBooksResults=({results})=>{
+const SearchBooksResults=({results,onUpdateShelf})=>{
     
     return(
         <div className="search-books-results">
@@ -65,7 +65,7 @@ const SearchBooksResults=({results})=>{
                                         backgroundImage:`url(${book.imageLinks.smallThumbnail}`,
                                         }}
                                     ></div>
-                                    <BookShelfChanger book={book}/>
+                                    <BookShelfChanger book={book} onUpdateShelf={onUpdateShelf}/>
                                     </div>
                                 </div>
                                 <div className="book-title">{book.title}</div>

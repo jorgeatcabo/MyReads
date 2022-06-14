@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import * as BooksAPI from '../BooksAPI'
 
-const BookShelfChanger=({book,onUpdateShelf1})=>{
+const BookShelfChanger=({book,onUpdateShelf})=>{
 
     const [shelf, setShelf]=useState("")
     const [currentShelf, setCurrentShelf]=useState("")
@@ -17,7 +17,7 @@ const BookShelfChanger=({book,onUpdateShelf1})=>{
             await BooksAPI.update(book,shelf);
             const bookDetails=await BooksAPI.get(book.id);
             setCurrentShelf(bookDetails.shelf)
-            onUpdateShelf1(currentShelf)
+            onUpdateShelf(currentShelf)
         }     
         
         if (shelf) updateShelf(shelf)
@@ -29,7 +29,7 @@ const BookShelfChanger=({book,onUpdateShelf1})=>{
         
         if (!shelf) getBook()    
 
-      }, [shelf,book,onUpdateShelf1,currentShelf]);
+      }, [shelf,book,onUpdateShelf,currentShelf]);
     return(
         
         <div className="book-shelf-changer">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as BooksAPI from '../BooksAPI'
 import SearchBooksResults from "./SearchBooksResults";
 
-const SearchBooks=({setShowSearchpage,showSearchPage})=>{
+const SearchBooks=({setShowSearchpage,showSearchPage, onUpdateShelf})=>{
 
     const [query, setQuery] = useState("");
 
@@ -55,7 +55,7 @@ const SearchBooks=({setShowSearchpage,showSearchPage})=>{
             />
           </div>
         </div>        
-        {results.length>0&&(<SearchBooksResults results={results}/>)}
+        {results.length>0&&(<SearchBooksResults results={results} onUpdateShelf={onUpdateShelf}/>)}
       </div>
 
     )    
