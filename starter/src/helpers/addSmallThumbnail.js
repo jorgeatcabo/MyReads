@@ -11,7 +11,7 @@ const addSmallThumbnail=(res)=>{
             }
             return book;  
           });   
-          return cleanedResults;
+        return cleanedResults;
     }
     else
     {

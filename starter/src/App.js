@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import * as BooksAPI from './BooksAPI'
 import MainPage from "./components/MainPage";
 import SearchBooks from "./components/SearchBooks";
+import addSmallThumbnail from "./helpers/addSmallThumbnail";
 
 function App() {
 
@@ -20,14 +21,27 @@ function App() {
     const getUserBooks = async () => {
     const res = await BooksAPI.getAll();
 
-    const currentlyReading=res.filter((book)=>book.shelf==="currentlyReading")
-    setUserCurrentlyReading(currentlyReading)
+    if (res.length)
+    {
+      const cleanedResults=addSmallThumbnail(res)
+      const currentlyReading=cleanedResults.filter((book)=>book.shelf==="currentlyReading")
+      setUserCurrentlyReading(currentlyReading)
+  
+      const wantToRead=cleanedResults.filter((book)=>book.shelf==="wantToRead")
+      setUserWantToRead(wantToRead)
+  
+      const read=cleanedResults.filter((book)=>book.shelf==="read")
+      setUserRead(read)
+  
+    }
+    else
+    {
+      setUserCurrentlyReading([])
+      setUserWantToRead([])
+      setUserRead([])
+    } 
 
-    const wantToRead=res.filter((book)=>book.shelf==="wantToRead")
-    setUserWantToRead(wantToRead)
 
-    const read=res.filter((book)=>book.shelf==="read")
-    setUserRead(read)
     
   };
 

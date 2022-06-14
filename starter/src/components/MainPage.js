@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import BookShelf from "./BookShelf";
 
-
 const MainPage=({userCurrentlyReading,userWantToRead,userRead,updateShelf})=>{
 
     return(
