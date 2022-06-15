@@ -34,7 +34,7 @@ const BookShelfChanger=({book,onUpdateShelf})=>{
         
         <div className="book-shelf-changer">
             <select onChange={handleUpdateShelf} value={currentShelf}>
-                <option value="none" disabled>
+                <option disabled>
                     Move to...
                 </option>
                 <option value="currentlyReading">
